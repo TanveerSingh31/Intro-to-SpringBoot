@@ -1,9 +1,9 @@
 package com.example.IntroToSpringboot.Service;
 
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class ProductService {
 
-    public int data;
 }
