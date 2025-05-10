@@ -1,6 +1,7 @@
 package com.example.IntroToSpringboot.Controller;
 
 import com.example.IntroToSpringboot.DTO.ProductDetail;
+import com.example.IntroToSpringboot.Entity.Product;
 import com.example.IntroToSpringboot.Sample2;
 import com.example.IntroToSpringboot.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,14 +28,11 @@ public class ProductController {
     Sample2 sample2Obj;
 
     @GetMapping("/data")
-    public List<String> getProducts(@RequestParam(name = "productId", required = false) int productId,
+    public List<Product> getProducts(@RequestParam(name = "productId", required = false) Object productId,
                                     @RequestParam(name = "productName", required = false) String productName){
-        List<String> productList = new ArrayList<String>(3);
-        productList.add("product1");
-        productList.add("product2");
-        productList.add("product3");
 
-        return productList;
+        List<Product> data = productService.getProductList();
+        return data;
     }
 
     @GetMapping("/data/{product}/detail")
@@ -52,9 +50,10 @@ public class ProductController {
     // Bean creation
 
     @PostMapping(path="/add-product")
-    public ResponseEntity<String> addProduct(@RequestBody ProductDetail productDetailObj){
+    public ResponseEntity<String> addProduct(@RequestBody Product productObj){
+        productService.addProduct(productObj.name, productObj.price);
 
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Product Added successfully");
+        return ResponseEntity.status(HttpStatus.OK).body("Product Added successfully");
     }
 
 }
