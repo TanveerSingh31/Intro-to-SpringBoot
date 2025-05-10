@@ -42,4 +42,11 @@ public class ProductRepository {
     }
 
 
+
+    public int removeProduct(int productId){
+        String sqlQuery = "DELETE from sample_db.products where id = ?";
+        return jdbcTemplate.update(sqlQuery, productId);
+    }
+
+
 }

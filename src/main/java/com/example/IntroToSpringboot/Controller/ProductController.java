@@ -56,6 +56,20 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.OK).body("Product Added successfully");
     }
 
+
+    @DeleteMapping(path="/delete-product")
+    public ResponseEntity<String> deleteProduct(@RequestParam int productId){
+        int data = productService.removeProduct(productId);
+        if(data > 0) {
+            return ResponseEntity.status(HttpStatus.OK).body("Product deleted successfully");
+        }
+        else{
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Product not found");
+        }
+    }
+
+
+
 }
 
 

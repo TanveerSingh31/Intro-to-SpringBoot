@@ -21,4 +21,9 @@ public class ProductService {
     public int addProduct(String name, int price) {
         return productRepository.addProduct(name, price);
     }
+
+
+    public int removeProduct(int productId){
+        return productRepository.removeProduct(productId);
+    }
 }
