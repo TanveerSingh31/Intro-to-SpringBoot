@@ -10,6 +10,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+// fetching data directly using jdbc
+
 @Repository
 public class ProductRepository {
 
