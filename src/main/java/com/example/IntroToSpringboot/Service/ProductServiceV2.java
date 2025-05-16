@@ -17,4 +17,9 @@ public class ProductServiceV2 {
         return productRepositoryV2.findAll();
     }
 
+
+    public Product addProduct(Product productObj) {
+        return productRepositoryV2.save(productObj);
+    }
+
 }

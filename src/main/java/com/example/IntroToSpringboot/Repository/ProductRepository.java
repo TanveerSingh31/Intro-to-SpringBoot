@@ -25,7 +25,7 @@ public class ProductRepository {
         String sqlQuery = "SELECT * FROM sample_db.products";
         List<Product> data = jdbcTemplate.query(sqlQuery, (rs, rowNum)->{
             Product p = new Product();
-            p.id = rs.getInt(1);;
+            p.id = rs.getLong(1);;
             p.name = rs.getString(2);;
             p.price = rs.getInt(3);;
 
