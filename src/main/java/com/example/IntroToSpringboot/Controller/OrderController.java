@@ -8,6 +8,8 @@ import com.example.IntroToSpringboot.Entity.Product;
 import com.example.IntroToSpringboot.Service.OrderService;
 import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -54,9 +56,18 @@ public class OrderController {
 
 
     @GetMapping(path="/jpql-query/get-order")
-    public Order getOrder(@RequestParam Long orderId) {
+    public void getOrder(@RequestParam Long orderId) {
 
-        return orderService.getOrderByIdJpql(orderId);
+
+        throw new CustomException(HttpStatus.BAD_REQUEST, "order not found");
+
+        //  return orderService.getOrderByIdJpql(orderId);
+    }
+
+
+    @ExceptionHandler(CustomException.class)
+    public ResponseEntity<String> handleException(CustomException e) {
+        return new ResponseEntity<>(e.message, e.status);
     }
 
 }

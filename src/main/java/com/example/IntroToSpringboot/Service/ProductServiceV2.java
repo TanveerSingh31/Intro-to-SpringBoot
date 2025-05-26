@@ -2,6 +2,7 @@ package com.example.IntroToSpringboot.Service;
 
 import com.example.IntroToSpringboot.Entity.Product;
 import com.example.IntroToSpringboot.Repository.ProductRepositoryV2;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ public class ProductServiceV2 {
         return productRepositoryV2.findAll();
     }
 
-
+    @Transactional
     public Product addProduct(Product productObj) {
         return productRepositoryV2.save(productObj);
     }
